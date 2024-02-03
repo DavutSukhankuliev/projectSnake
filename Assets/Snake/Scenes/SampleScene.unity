@@ -133,6 +133,8 @@ GameObject:
   m_Component:
   - component: {fileID: 74508640}
   - component: {fileID: 74508639}
+  - component: {fileID: 74508641}
+  - component: {fileID: 74508642}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -153,7 +155,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
-  _monoInstallers: []
+  _monoInstallers:
+  - {fileID: 74508642}
+  - {fileID: 74508641}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -186,6 +190,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &74508641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74508638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f80864a1e31d5144cbf116fe8d5a1aaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gridCellViewPrototype: {fileID: 9116863253169514177, guid: 4f17137397bfce24f8806b9c8772e27f, type: 3}
+  _cellConfig: {fileID: 11400000, guid: 5fa0d24d967cd2144bc0ced1305ae46c, type: 2}
+  _gridConfig: {fileID: 11400000, guid: 8fd9ed455d6c93b41850f580c34c8c9f, type: 2}
+--- !u!114 &74508642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74508638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9775e58bf7dbd049801bc7977995d5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
