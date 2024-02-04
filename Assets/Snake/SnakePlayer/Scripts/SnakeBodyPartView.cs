@@ -5,14 +5,22 @@ using Zenject;
 namespace Snake
 {
     [RequireComponent(typeof(SpriteRenderer))]
-    public class SnakeView : MonoBehaviour, IDisposable
+    [RequireComponent(typeof(BoxCollider2D))]
+    public class SnakeBodyPartView : MonoBehaviour, IDisposable
     {
         [SerializeField] private SpriteRenderer _spriteRenderer;
-        [SerializeField] private Collider2D _collider;
-
+        [SerializeField] private BoxCollider2D _collider;
+        
         private IMemoryPool _pool;
 
+        public double Speed { get; set; }
         public bool IsHead { get; set; }
+
+        private void OnValidate()
+        {
+            _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+            _collider = gameObject.GetComponent<BoxCollider2D>();
+        }
 
         public void OnDespawned()
         {
@@ -29,7 +37,9 @@ namespace Snake
         public void ReInit(SnakeProtocol protocol)
         {
             // when reused in pool
-            _spriteRenderer.sprite = IsHead ? protocol.SpriteHead : protocol.SpriteBody;
+            transform.position = protocol.Position;
+            _spriteRenderer.sprite = protocol.Sprite;
+            Speed = protocol.Speed;
         }
         
         public void Dispose()
@@ -38,14 +48,14 @@ namespace Snake
             _pool = null;
         }
         
-        public class Pool : MemoryPool<SnakeProtocol, SnakeView>
+        public class Pool : MemoryPool<SnakeProtocol, SnakeBodyPartView>
         {
-            protected override void Reinitialize(SnakeProtocol protocol, SnakeView item)
+            protected override void Reinitialize(SnakeProtocol protocol, SnakeBodyPartView item)
             {
                 item.ReInit(protocol);
             }
 
-            protected override void OnSpawned(SnakeView item)
+            protected override void OnSpawned(SnakeBodyPartView item)
             {
                 base.OnSpawned(item);
                 item.OnSpawned(this);

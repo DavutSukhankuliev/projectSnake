@@ -3,11 +3,12 @@ using Zenject;
 
 namespace Snake
 {
-    public class InputHandler : ITickable
+    // todo: remove dependency of snakecontroller
+    public class KeyboardInputHandler : ITickable
     {
         private readonly SnakeController _snakeController;
 
-        public InputHandler(SnakeController snakeController)
+        public KeyboardInputHandler(SnakeController snakeController)
         {
             _snakeController = snakeController;
         }
@@ -16,9 +17,9 @@ namespace Snake
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                _snakeController.InitSnake();
+                _snakeController.CreateSnakeBodyPart();
             }
-
+            
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 _snakeController.MoveTo(Direction.Left);

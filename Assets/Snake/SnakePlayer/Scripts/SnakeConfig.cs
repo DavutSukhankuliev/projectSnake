@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Snake
@@ -6,19 +5,16 @@ namespace Snake
     public struct SnakeProtocol
     {
         public Vector3 Position;
-        public Sprite SpriteHead;
-        public Sprite SpriteBody;
+        public Sprite Sprite;
         public double Speed;
 
         public SnakeProtocol(
             Vector3 position,
-            Sprite spriteHead,
-            Sprite spriteBody,
+            Sprite sprite,
             double speed)
         {
             Position = position;
-            SpriteHead = spriteHead;
-            SpriteBody = spriteBody;
+            Sprite = sprite;
             Speed = speed;
         }
     }
@@ -34,6 +30,7 @@ namespace Snake
         public Sprite SpriteHead => _spriteHead;
         public Sprite SpriteBody => _spriteBody;
         public double Speed => _speed;
+        public int InitLength => _initLength;
 
         private void OnValidate()
         {

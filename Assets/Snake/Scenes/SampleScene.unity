@@ -231,8 +231,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a410bfb102874149b7540662e1f42089, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _snakeConfig: {fileID: 11400000, guid: 8ecff9f8e4cf2014aa76259a35717668, type: 2}
-  _snakePrefab: {fileID: 4364838899971410805, guid: 85179f001eab2ee408cf373abedc8f6e, type: 3}
+  SnakeBodyPartConfig: {fileID: 11400000, guid: 8ecff9f8e4cf2014aa76259a35717668, type: 2}
+  SnakeBodyPartPrefab: {fileID: 4772257715890495385, guid: 85179f001eab2ee408cf373abedc8f6e, type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

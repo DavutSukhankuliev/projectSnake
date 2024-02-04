@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
@@ -8,27 +7,34 @@ namespace Snake
     public class SnakeController : IMovable
     {
         private readonly IInstantiator _instantiator;
-        private readonly SnakeConfig _config;
+        private readonly SnakeConfig _snakeConfig;
 
-        private List<SnakeView> _snake = new List<SnakeView>();
+        private List<SnakeBodyPartCreateCommand> _snake = new List<SnakeBodyPartCreateCommand>();
 
         public SnakeController(
             IInstantiator instantiator,
-            SnakeConfig config)
+            SnakeConfig snakeConfig)
         {
             _instantiator = instantiator;
-            _config = config;
+            _snakeConfig = snakeConfig;
         }
 
-        public void InitSnake()
+        public void CreateSnakeBodyPart(int number = 1)
         {
-            var protocol = new SnakeProtocol(Vector3.zero, _config.SpriteHead, _config.SpriteBody, _config.Speed);
-            var command = _instantiator.Instantiate<SnakeCreateCommand>(new object[] { protocol });
-            command.Execute();
+            for (int i = 0; i < number; i++)
+            {
+                var isSpawnedBefore = _snake.Count == 0;
+                var spawnPosition = isSpawnedBefore ? Vector3.zero : _snake[^1].GetBody().transform.position;
+                var spawnSprite = isSpawnedBefore ? _snakeConfig.SpriteHead : _snakeConfig.SpriteBody;
+                
+                var protocol = new SnakeProtocol(spawnPosition, spawnSprite, _snakeConfig.Speed);
+                var command = _instantiator.Instantiate<SnakeBodyPartCreateCommand>(new object[] { protocol });
+                command.Execute();
             
-            var head = command.GetBody();
-            head.IsHead = true;
-            _snake.Add(head);
+                var bodyPartCommand = command;
+                bodyPartCommand.GetBody().IsHead = isSpawnedBefore;
+                _snake.Add(bodyPartCommand);
+            }
         }
 
 
@@ -36,41 +42,23 @@ namespace Snake
         {
             var position = direction switch
             {
-                Direction.Down => _snake[0].transform.position + Vector3.down,
-                Direction.Up => _snake[0].transform.position + Vector3.up,
-                Direction.Left => _snake[0].transform.position + Vector3.left,
-                Direction.Right => _snake[0].transform.position + Vector3.right,
-                _ => _snake[0].transform.position
+                Direction.Down => _snake[0].GetBody().transform.position + Vector3.down,
+                Direction.Up => _snake[0].GetBody().transform.position + Vector3.up,
+                Direction.Left => _snake[0].GetBody().transform.position + Vector3.left,
+                Direction.Right => _snake[0].GetBody().transform.position + Vector3.right,
+                _ => _snake[0].GetBody().transform.position
             };
 
+            var prevPos = _snake[0].GetBody().transform.position;
             var desiredPos = position;
-            var prevPos = position;
-            for (int i = 0; i < _snake.Count; i++)
-            {
-                if (i == 0)
-                {
-                    prevPos = _snake[i].transform.position;
-                    desiredPos = position;
-                    _snake[i].transform.position = desiredPos;
-                }
-                else
-                {
-                    desiredPos = prevPos;
-                    prevPos = _snake[i].transform.position;
-                    _snake[i].transform.position = desiredPos;
-                }
-            }
-        }
+            _snake[0].GetBody().transform.position = desiredPos;
 
-        public void AddBody(Vector3 pos)
-        {
-            var protocol = new SnakeProtocol(pos, _config.SpriteHead, _config.SpriteBody, _config.Speed);
-            var command = _instantiator.Instantiate<SnakeCreateCommand>(new object[] { protocol });
-            command.Execute();
-            
-            var head = command.GetBody();
-            head.IsHead = false;
-            _snake.Add(head);
+            for (var i = 1; i < _snake.Count; i++)
+            {
+                desiredPos = prevPos;
+                prevPos = _snake[i].GetBody().transform.position;
+                _snake[i].GetBody().transform.position = desiredPos;
+            }
         }
     }
 }
