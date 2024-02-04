@@ -6,31 +6,31 @@ namespace Snake
     public class GridController
     {
         private readonly IInstantiator _instantiator;
-        private readonly GridModel _gridModel;
-        private readonly GridCellModel _gridCellModel;
+        private readonly GridConfig _gridConfig;
+        private readonly GridCellConfig _gridCellConfig;
 
         public GridController(
             IInstantiator instantiator, 
-            GridModel gridModel,
-            GridCellModel gridCellModel)
+            GridConfig gridConfig,
+            GridCellConfig gridCellConfig)
         {
             _instantiator = instantiator;
-            _gridModel = gridModel;
-            _gridCellModel = gridCellModel;
+            _gridConfig = gridConfig;
+            _gridCellConfig = gridCellConfig;
             
             InitGrid();
         }
 
         public void InitGrid()
         {
-            for (int i = 0; i < _gridModel.Width; i++)
+            for (int i = 0; i < _gridConfig.Width; i++)
             {
-                for (int j = 0; j < _gridModel.Height; j++)
+                for (int j = 0; j < _gridConfig.Height; j++)
                 {
                     var protocol = (i + j) % 2 == 1
-                        ? new GridCellProtocol(new Vector3(i, j), _gridCellModel.Sprite, _gridCellModel.ColorThreshold)
-                        : new GridCellProtocol(new Vector3(i, j), _gridCellModel.Sprite,
-                            _gridCellModel.ColorThreshold - _gridCellModel.ColorThreshold);
+                        ? new GridCellProtocol(new Vector3(i, j), _gridCellConfig.Sprite, _gridCellConfig.ColorThreshold)
+                        : new GridCellProtocol(new Vector3(i, j), _gridCellConfig.Sprite,
+                            _gridCellConfig.ColorThreshold - _gridCellConfig.ColorThreshold);
                     
                     var command = _instantiator.Instantiate<GridCellCreateCommand>(new object[] { protocol });
                     var result = command.Execute();

@@ -6,18 +6,18 @@ namespace Snake
     public class GridInstaller : MonoInstaller<GridInstaller>
     {
         [SerializeField] private GridCellView _gridCellViewPrototype;
-        [SerializeField] private GridCellModel _cellConfig;
-        [SerializeField] private GridModel _gridConfig;
+        [SerializeField] private GridCellConfig _cellConfig;
+        [SerializeField] private GridConfig _gridConfig;
     
         public override void InstallBindings()
         {
             Container
-                .Bind<GridCellModel>()
+                .Bind<GridCellConfig>()
                 .FromInstance(_cellConfig)
                 .AsSingle();
             
             Container
-                .Bind<GridModel>()
+                .Bind<GridConfig>()
                 .FromInstance(_gridConfig)
                 .AsSingle();
 

@@ -19,8 +19,8 @@ namespace Snake
         }
     }
     
-    [CreateAssetMenu(fileName = "GridCellModel", menuName = "Configs/GridCellModel", order = 0)]
-    public class GridCellModel : ScriptableObject
+    [CreateAssetMenu(fileName = "GridCellConfig", menuName = "Configs/GridCellConfig", order = 0)]
+    public class GridCellConfig : ScriptableObject
     {
         [SerializeField] private Sprite _sprite;
         [SerializeField, Range (-0.5f,0.5f)] private float _colorThreshold;
