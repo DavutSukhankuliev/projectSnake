@@ -8,9 +8,10 @@ namespace Snake
     public class GridCellView : MonoBehaviour, IDisposable
     {
         [SerializeField] private SpriteRenderer _spriteRenderer;
-        
-        private float _colorThreshold;
+
         private IMemoryPool _pool;
+
+        public float ColorThreshold { get; private set; }
 
         public void OnDespawned()
         {
@@ -29,13 +30,23 @@ namespace Snake
             // when reused in pool
             transform.position = protocol.LocalPosition;
             _spriteRenderer.sprite = protocol.Sprite;
-            _colorThreshold = protocol.ColorThreshold;
+            ColorThreshold = protocol.ColorThreshold;
+            
+            SetCellColor();
         }
         
         public void Dispose()
         {
             // when removed from pool
             _pool = null;
+        }
+
+        private void SetCellColor()
+        {
+            var color = _spriteRenderer.color;
+            color = new Color(color.r + ColorThreshold,
+                color.g + ColorThreshold, color.b + ColorThreshold);
+            _spriteRenderer.color = color;
         }
         
         public class Pool : MemoryPool<GridCellProtocol, GridCellView>
@@ -50,10 +61,6 @@ namespace Snake
                 base.OnSpawned(item);
                 item.OnSpawned(this);
             }
-        }
-
-        public class Factory : PlaceholderFactory<GridCellProtocol, GridCellView>
-        {
         }
     }
 }
