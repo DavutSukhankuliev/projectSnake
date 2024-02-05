@@ -12,9 +12,18 @@ namespace Snake
         [SerializeField] private BoxCollider2D _collider;
         
         private IMemoryPool _pool;
-
+        private bool _isHead;
         public double Speed { get; set; }
-        public bool IsHead { get; set; }
+        public bool IsHead
+        {
+            get => _isHead;
+            set
+            {
+                _isHead = value;
+                _spriteRenderer.sortingOrder = value ? _spriteRenderer.sortingOrder += 1 : _spriteRenderer.sortingOrder;
+                //todo: if head changed return to base sortingorder
+            }
+        }
 
         private void OnValidate()
         {
