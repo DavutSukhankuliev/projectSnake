@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39d2d4fdcb2a49258a46d7fb9e7e59ea, type: 3}
+  m_Script: {fileID: 11500000, guid: 45fd5b154fbf39547a066a645ea7e993, type: 3}
   m_Name: FoodConfig
   m_EditorClassIdentifier: 
   _foodModels:
   - ID: Apple
     Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-    ScoreValue: 0
+    Points: 0
     SnakeSizeValue: 0
     SpeedValue: 0
     IsGhost: 0

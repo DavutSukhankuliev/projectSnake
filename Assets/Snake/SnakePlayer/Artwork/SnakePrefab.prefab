@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2459038112834503367}
   - component: {fileID: 2648814694207869236}
   - component: {fileID: 7020844474361738828}
-  - component: {fileID: 4772257715890495385}
+  - component: {fileID: 4064773508983057592}
   m_Layer: 0
   m_Name: SnakePrefab
   m_TagString: Untagged
@@ -131,7 +131,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.1}
   m_EdgeRadius: 0
---- !u!114 &4772257715890495385
+--- !u!114 &4064773508983057592
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5048128938913845308}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22754e66a1930ec4684ca6b496192b83, type: 3}
+  m_Script: {fileID: 11500000, guid: d62932e5c72d2f446ad211c16985dac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 2648814694207869236}

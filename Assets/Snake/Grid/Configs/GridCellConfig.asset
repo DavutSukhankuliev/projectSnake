@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4250242612774ef0991b8c7169b7b668, type: 3}
-  m_Name: GridCellModel
+  m_Script: {fileID: 11500000, guid: d4b54790fdb3d384ab9ebe1877a70c52, type: 3}
+  m_Name: GridCellConfig
   m_EditorClassIdentifier: 
   _sprite: {fileID: 21300000, guid: 5d0fea73b0b5d5e4585f6701cb61ca1d, type: 3}
   _colorThreshold: -0.07
