@@ -19,8 +19,8 @@ namespace Snake
         }
     }
     
-    [CreateAssetMenu(fileName = "GridModel", menuName = "Configs/GridModel", order = 0)]
-    public class GridModel : ScriptableObject
+    [CreateAssetMenu(fileName = "GridConfig", menuName = "Configs/GridConfig", order = 0)]
+    public class GridConfig : ScriptableObject
     {
         [SerializeField] private int _width;
         [SerializeField] private int _height;
