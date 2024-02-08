@@ -5,19 +5,19 @@ namespace Snake
 {
     public class SnakeInstaller : MonoInstaller<SnakeInstaller>
     {
-        [SerializeField] private SnakeConfig SnakeBodyPartConfig;
-        [SerializeField] private SnakeBodyPartView SnakeBodyPartPrefab;
+        [SerializeField] private SnakeConfig _snakeBodyPartConfig;
+        [SerializeField] private SnakeBodyPartView _snakeBodyPartPrefab;
         
         public override void InstallBindings()
         {
             Container
                 .Bind<SnakeConfig>()
-                .FromInstance(SnakeBodyPartConfig)
+                .FromInstance(_snakeBodyPartConfig)
                 .AsSingle();
 
             Container
                 .BindMemoryPool<SnakeBodyPartView, SnakeBodyPartView.Pool>()
-                .FromComponentInNewPrefab(SnakeBodyPartPrefab)
+                .FromComponentInNewPrefab(_snakeBodyPartPrefab)
                 .UnderTransformGroup("Snake");
 
             Container

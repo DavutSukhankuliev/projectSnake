@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 74508641}
   - component: {fileID: 74508643}
   - component: {fileID: 74508644}
+  - component: {fileID: 74508645}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -162,6 +163,7 @@ MonoBehaviour:
   - {fileID: 74508641}
   - {fileID: 74508643}
   - {fileID: 74508644}
+  - {fileID: 74508645}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -233,8 +235,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12e1e0688b48065438c9ea29c674c17a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SnakeBodyPartConfig: {fileID: 11400000, guid: f8419f4424980ca45a05532df0055a75, type: 2}
-  SnakeBodyPartPrefab: {fileID: 4064773508983057592, guid: ebb9d12b12b329e48b70dfa2ca13d9d4, type: 3}
+  _snakeBodyPartConfig: {fileID: 11400000, guid: f8419f4424980ca45a05532df0055a75, type: 2}
+  _snakeBodyPartPrefab: {fileID: 4064773508983057592, guid: ebb9d12b12b329e48b70dfa2ca13d9d4, type: 3}
 --- !u!114 &74508644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,6 +251,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _prefab: {fileID: 1879492138373094405, guid: e4d2b607c52572a4fb3ad0d14ef789e3, type: 3}
   _config: {fileID: 11400000, guid: cd4c416ae2f177743861620e2ffb4386, type: 2}
+--- !u!114 &74508645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74508638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2f3d45760ea43dfa5b90a55fd307f0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _config: {fileID: 11400000, guid: 84cffaa7c66e0b843acd6cbeec14fb82, type: 2}
+  _prefab: {fileID: 7038916114546632795, guid: 5df7c6feb93c51e479a71d01a5dba91d, type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
