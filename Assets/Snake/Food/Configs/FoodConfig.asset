@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _foodModels:
   - ID: Apple
-    Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+    Sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
     Points: 0
     SnakeSizeValue: 0
     SpeedValue: 0
