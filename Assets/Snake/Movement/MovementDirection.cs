@@ -1,6 +1,6 @@
 namespace Snake
 {
-    public enum Direction
+    public enum MovementDirection
     {
         Left,
         Right,

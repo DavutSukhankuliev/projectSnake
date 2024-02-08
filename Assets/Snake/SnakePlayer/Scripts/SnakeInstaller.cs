@@ -23,11 +23,6 @@ namespace Snake
             Container
                 .BindInterfacesAndSelfTo<SnakeController>()
                 .AsSingle();
-
-            Container
-                .BindInterfacesAndSelfTo<KeyboardInputHandler>()
-                .AsSingle()
-                .NonLazy();
         }
     }
 }

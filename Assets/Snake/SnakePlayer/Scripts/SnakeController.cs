@@ -6,9 +6,11 @@ namespace Snake
 {
     public class SnakeController : IMovable
     {
+        public MovementDirection CurrentDirection { get; private set; }
+        
         private readonly IInstantiator _instantiator;
         private readonly SnakeConfig _snakeConfig;
-
+        
         private List<SnakeBodyPartCreateCommand> _snake = new List<SnakeBodyPartCreateCommand>();
 
         public SnakeController(
@@ -37,17 +39,34 @@ namespace Snake
             }
         }
 
-
-        public void MoveTo(Direction direction)
+        public void MoveTo(MovementDirection movementDirection)
         {
-            var position = direction switch
+            if (_snake.Count == 0)
             {
-                Direction.Down => _snake[0].GetBody().transform.position + Vector3.down,
-                Direction.Up => _snake[0].GetBody().transform.position + Vector3.up,
-                Direction.Left => _snake[0].GetBody().transform.position + Vector3.left,
-                Direction.Right => _snake[0].GetBody().transform.position + Vector3.right,
-                _ => _snake[0].GetBody().transform.position
-            };
+                return;
+            }
+            
+            Vector3 position;
+            switch (movementDirection)
+            {
+                case MovementDirection.Down:
+                    position = _snake[0].GetBody().transform.position + Vector3.down;
+                    break;
+                case MovementDirection.Up:
+                    position = _snake[0].GetBody().transform.position + Vector3.up;
+                    break;
+                case MovementDirection.Left:
+                    position = _snake[0].GetBody().transform.position + Vector3.left;
+                    break;
+                case MovementDirection.Right:
+                    position = _snake[0].GetBody().transform.position + Vector3.right;
+                    break;
+                default:
+                    position = _snake[0].GetBody().transform.position;
+                    break;
+            }
+
+            CurrentDirection = movementDirection;
 
             var prevPos = _snake[0].GetBody().transform.position;
             var desiredPos = position;
