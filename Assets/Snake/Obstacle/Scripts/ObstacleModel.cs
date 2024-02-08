@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 
 namespace Snake
 {
+    [Serializable]
     public struct ObstacleModel
     {
         public string ID;

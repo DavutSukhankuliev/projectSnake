@@ -20,7 +20,9 @@ namespace Snake
 
         private void OnDespawned()
         {
-            _pool.Despawn(this);
+            transform.position = Vector3.zero;
+            
+            gameObject.SetActive(false);
         }
 
         private void OnSpawned(IMemoryPool pool)
@@ -30,6 +32,8 @@ namespace Snake
 
         private void ReInit(ObstacleProtocol protocol)
         {
+            gameObject.SetActive(true);
+            
             transform.position = protocol.SceneObjectProtocol.Position;
             _spriteRenderer.sprite = protocol.ObstacleModel.Sprite;
         }
@@ -44,6 +48,12 @@ namespace Snake
             protected override void Reinitialize(ObstacleProtocol protocol, ObstacleView item)
             {
                 item.ReInit(protocol);
+            }
+            
+            protected override void OnDespawned(ObstacleView item)
+            {
+                item.OnDespawned();
+                base.OnDespawned(item);
             }
 
             protected override void OnSpawned(ObstacleView item)
