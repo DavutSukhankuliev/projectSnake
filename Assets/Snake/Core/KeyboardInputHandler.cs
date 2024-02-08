@@ -3,18 +3,40 @@ using Zenject;
 
 namespace Snake
 {
-    // todo: remove dependency of snakecontroller
+    // todo: remove dependencies of controllers
     public class KeyboardInputHandler : ITickable
     {
         private readonly SnakeController _snakeController;
+        private readonly FoodController _foodController;
+        private readonly ObstacleController _obstacleController;
 
-        public KeyboardInputHandler(SnakeController snakeController)
+        public KeyboardInputHandler(
+            SnakeController snakeController, 
+            FoodController foodController, 
+            ObstacleController obstacleController)
         {
             _snakeController = snakeController;
+            _foodController = foodController;
+            _obstacleController = obstacleController;
         }
 
         public void Tick()
         {
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                _obstacleController.Spawn(Vector3.zero, "WoodBox");
+            }
+
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                _obstacleController.DespawnLast();
+            }
+
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                _foodController.CreateFood("Apple");
+            }
+            
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 _snakeController.CreateSnakeBodyPart();
